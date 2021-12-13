@@ -1,7 +1,7 @@
 import { createStore } from 'redux';
 import rotateReducer from './Reducers/reducer';
 
-const configStore = (state = {rotating:10, testAction:5})  => {
+const configStore = (state = {rotating:false, testAction:5})  => {
     return createStore(
         rotateReducer, 
         state, 
