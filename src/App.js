@@ -2,6 +2,8 @@ import logo from './logo.svg';
 import './App.css';
 import { rotateAction } from './Actions/action';
 import { connect } from "react-redux";
+import { rotateSelector } from './rotateSelector';
+ 
 
 function App(props) {
   return (
@@ -40,7 +42,7 @@ const mapDispatchToProps = dispatch => ({
 
 
 const mapStateToProps = state => ({
-  ...state
+  rotating: rotateSelector(state)
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(App);

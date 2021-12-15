@@ -1,12 +1,19 @@
-import { createStore } from 'redux';
-import rotateReducer from './Reducers/reducer';
+import { createStore, applyMiddleware, compose } from 'redux';
+import createSagaMiddleware from 'redux-saga';
+import rotateReducer from "./Reducers/reducer";
+import {rootSaga} from './rootSaga';
 
 const configStore = (state = {rotating:false, testAction:5})  => {
-    return createStore(
+    const sagaMiddleware = createSagaMiddleware();
+    const allMiddlewares = applyMiddleware(sagaMiddleware);
+    const composeEnhancer = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
+    const store =  createStore(
         rotateReducer, 
         state, 
-        window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ &&  window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__()
+        composeEnhancer(allMiddlewares)
         )
+        sagaMiddleware.run(rootSaga);
+        return store
 } 
 
 export default configStore;

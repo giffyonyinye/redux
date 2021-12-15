@@ -1,14 +1,15 @@
-
+// Dispached from component
 export const rotateAction = (payload) => {
     return {
-        type: "ROTATE",
-        payload
+      type: "ROTATE",
+      payload
     }
-}
+  }
 
-export const testAction = (payload) => {
+//Dispatched from Saga
+  export const rotateActionFromSaga = (payload) => {
     return {
-        type: "TEST_ACTION",
-        payload
+      type: "ROTATE_FROM_SAGA",
+      payload
     }
-}
+  }
